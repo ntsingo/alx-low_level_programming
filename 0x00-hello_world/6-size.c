@@ -4,7 +4,7 @@
  * code by naomi ict
  * return: 0
  */
-it main(void)
+int main(void)
 {
 char a;
 int b;
