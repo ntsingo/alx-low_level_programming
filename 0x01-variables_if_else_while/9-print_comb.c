@@ -1,23 +1,25 @@
-#include <sdtio.h>
+#include <stdio.h>
+#include <unistd.h>
 /**
  * main - Entry point
- *
+ * Description: prints numbers
  * Return: Always 0 (success)
  */
-
 int main(void)
 {
-	int a;
+	int i;
 
-	for (a = 0; a < 10; a++)
+	for (i = '0'; i <= '9' ; i++)
 	{
-		putchar(a = '0');
-		if (a < 9)
+		putchar(i);
+
+		if (i != '9')
 		{
 			putchar(',');
 			putchar(' ');
 		}
 	}
-	putchar('\n);
+
+	putchar('\n');
 	return (0);
 }
