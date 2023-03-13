@@ -1,46 +1,57 @@
+#include <stdio.h>
 #include <stdlib.h>
-#include "main.h"
+
+int **alloc_grid(int, int);
 
 /**
- * **alloc_grid - creates a two dimensional array of ints
- * @width: width of the matrix
- * @height: height of the matrix
+ * print_grid - prints a grid of integers
+ * @grid: the address of the two dimensional grid
+ * @width: width of the grid
+ * @height: height of the grid
  *
- * Return: pointer to the created matrix (Success)
- * or NULL (Error)
+ * Return: Nothing.
  */
-int **alloc_grid(int width, int height)
+void print_grid(int **grid, int width, int height)
 {
-	int **arr;
-	int i, j;
+	int w;
+	int h;
 
-	if (height <= 0 || width <= 0)
-iii		return (NULL);
-
-	arr = (int **) malloc(sizeof(int *) * height);
-
-	if (arr == NULL)
-i		return (NULL);
-
-	for (i = 0; i < height; i++)
+	h = 0;
+	while (h < height)
 	{
-		arr[i] = (int *) malloc(sizeof(int) * width);
-		if (arr[i] == NULL)
+		w = 0;
+		while (w < width)
 		{
-			free(arr);
-			for (j = 0; j <= i; j++)
-				free(arr[j]);
-			return (NULL);
+			printf("%d ", grid[h][w]);
+			w++;
 		}
+		printf("\n");
+		h++;
 	}
-
-	for (i = 0; i < height; i++)
-	{
-		for (j = 0; j < width; j++)
-		{
-			arr[i][j] = 0;
-		}
-	}
-	return (arr);
 }
 
+/**
+ * main - check the code .
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+	int **grid;
+	int h;
+	int w;
+
+	h = 32;
+	w = 48;
+	grid = alloc_grid(w, h);
+	if (grid == NULL)
+	{
+		return (1);
+	}
+	print_grid(grid, w, h);
+	printf("\n");
+	grid[23][14] = 98;
+	grid[19][43] = 402;
+	print_grid(grid, w, h);
+	return (0);
+}
