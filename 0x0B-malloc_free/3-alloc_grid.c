@@ -1,41 +1,46 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
+
 /**
- * str_concat - Main Entry
- * @s1: input
- * @s2: input
- * Return: 0
+ * **alloc_grid - creates a two dimensional array of ints
+ * @width: width of the matrix
+ * @height: height of the matrix
+ *
+ * Return: pointer to the created matrix (Success)
+ * or NULL (Error)
  */
-char *str_concat(char *s1, char *s2)
+int **alloc_grid(int width, int height)
 {
-	unsigned int size1 = 0, size2 = 0;
-	char *ptr, *ret;
+	int **arr;
+	int i, j;
 
-	ptr = s1;
-	if (s1)
-		while (*ptr++)
-			size1++;
-	else
-		s1 = "";
+	if (height <= 0 || width <= 0)
+iii		return (NULL);
 
-	ptr = s2;
-	if (s2)
-		while (*ptr++)
-			size2++;
-	else
-		s2 = "";
+	arr = (int **) malloc(sizeof(int *) * height);
 
-	ret = malloc(size1 + size2 + 1);
-	if (!ret)
-		return (NULL);
+	if (arr == NULL)
+i		return (NULL);
 
-	ptr = ret;
-	while (*s1)
-		*ptr++ = *s1++;
-	while (*s2)
-		*ptr++ = *s2++;
-	*ptr = 0;
+	for (i = 0; i < height; i++)
+	{
+		arr[i] = (int *) malloc(sizeof(int) * width);
+		if (arr[i] == NULL)
+		{
+			free(arr);
+			for (j = 0; j <= i; j++)
+				free(arr[j]);
+			return (NULL);
+		}
+	}
 
-	return (ret);
+	for (i = 0; i < height; i++)
+	{
+		for (j = 0; j < width; j++)
+		{
+			arr[i][j] = 0;
+		}
+	}
+	return (arr);
 }
+
